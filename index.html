@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyses - Translation Styles Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- SVG Icons -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <defs>
+            <!-- Trophy Icon -->
+            <symbol id="icon-trophy" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2z"/>
+            </symbol>
+            <!-- Fire Icon -->
+            <symbol id="icon-fire" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12 23C7.58 23 4 19.42 4 15c0-3.5 2.11-6.5 5.11-7.72.34-.14.69.13.69.49 0 .2-.11.38-.29.47-1.81.96-3.01 2.83-3.01 4.97 0 3.08 2.5 5.58 5.58 5.58s5.58-2.5 5.58-5.58c0-1.48-.58-2.82-1.53-3.82-.18-.19-.29-.45-.29-.72 0-.37.37-.63.73-.48C18.89 8.5 21 11.5 21 15c0 4.42-3.58 8-9 8z"/>
+            </symbol>
+            <!-- Clock Icon -->
+            <symbol id="icon-clock" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+            </symbol>
+            <!-- Star Icon -->
+            <symbol id="icon-star" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </symbol>
+            <!-- Chart Icon -->
+            <symbol id="icon-chart" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/>
+            </symbol>
+            <!-- Users Icon -->
+            <symbol id="icon-users" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+            </symbol>
+            <!-- Arrow Up Icon -->
+            <symbol id="icon-arrow-up" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+            </symbol>
+            <!-- Arrow Right Icon -->
+            <symbol id="icon-arrow-right" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+            </symbol>
+            <!-- Bookmark Icon -->
+            <symbol id="icon-bookmark" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
+            </symbol>
+            <!-- Share Icon -->
+            <symbol id="icon-share" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/>
+            </symbol>
+            <!-- Comment Icon -->
+            <symbol id="icon-comment" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"/>
+            </symbol>
+            <!-- Thumbs Up Icon -->
+            <symbol id="icon-thumbs-up" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/>
+            </symbol>
+            <!-- Check Icon -->
+            <symbol id="icon-check" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+            </symbol>
+            <!-- Soccer Icon -->
+            <symbol id="icon-soccer" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 2.07c2.54.5 4.64 2.24 5.58 4.55L17 9.5l-3-1.08v-4.35zM7.42 8.62l.58-2.55c.42-.21.88-.38 1.35-.51L12 7l.56-1.44L11 4.07v4.35L8 9.5l-1.58-.88z"/>
+            </symbol>
+            <!-- Darts Icon -->
+            <symbol id="icon-darts" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+            </symbol>
+            <!-- External Link Icon -->
+            <symbol id="icon-external" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+            </symbol>
+            <!-- Wallet Icon -->
+            <symbol id="icon-wallet" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+            </symbol>
+            <!-- Target Icon -->
+            <symbol id="icon-target" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+            </symbol>
+            <!-- Verified Icon -->
+            <symbol id="icon-verified" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+            </symbol>
+            <!-- Info Icon -->
+            <symbol id="icon-info" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+            </symbol>
+            <!-- Warning Icon -->
+            <symbol id="icon-warning" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+            </symbol>
+            <!-- Translate Icon -->
+            <symbol id="icon-translate" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/>
+            </symbol>
+        </defs>
+    </svg>
+
+    <!-- Top Header Bar (Simulated Client Header) -->
+    <header class="top-header">
+        <div class="header-left">
+            <div class="header-logo">
+                <span class="logo-text">BetBrasil</span>
+                <span class="logo-badge">Casino & Sports</span>
+            </div>
+        </div>
+        <nav class="header-nav">
+            <a href="#" class="nav-item">Esportes</a>
+            <a href="#" class="nav-item">Ao Vivo</a>
+            <a href="#" class="nav-item">Casino</a>
+            <a href="#" class="nav-item active">Comunidade</a>
+            <a href="#" class="nav-item">Promoções</a>
+        </nav>
+        <div class="header-right">
+            <button class="btn-secondary">Entrar</button>
+            <button class="btn-primary">Cadastre-se</button>
+            
+            <!-- Translation Style Switcher -->
+            <div class="mode-switcher">
+                <button class="mode-toggle" id="mode-toggle">
+                    <svg width="18" height="18"><use href="#icon-translate"/></svg>
+                    <span class="mode-toggle-label" id="mode-label">Professional</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+                </button>
+                <div class="mode-dropdown" id="mode-dropdown">
+                    <div class="mode-dropdown-label">Translation Style</div>
+                    <button class="mode-option" data-mode="deepl">
+                        <span class="mode-option-icon">🤖</span>
+                        <div class="mode-option-content">
+                            <span class="mode-option-title">DeepL (Raw)</span>
+                            <span class="mode-option-desc">Machine translation, unedited</span>
+                        </div>
+                        <span class="mode-quality bad">⚠️</span>
+                    </button>
+                    <button class="mode-option active" data-mode="professional">
+                        <span class="mode-option-icon">📊</span>
+                        <div class="mode-option-content">
+                            <span class="mode-option-title">Professional</span>
+                            <span class="mode-option-desc">Clean, structured analysis</span>
+                        </div>
+                        <span class="mode-quality good">✓</span>
+                    </button>
+                    <button class="mode-option" data-mode="casual">
+                        <span class="mode-option-icon">🎯</span>
+                        <div class="mode-option-content">
+                            <span class="mode-option-title">Casual Tipster</span>
+                            <span class="mode-option-desc">Friendly, conversational US style</span>
+                        </div>
+                        <span class="mode-quality good">✓</span>
+                    </button>
+                    <button class="mode-option" data-mode="sharp">
+                        <span class="mode-option-icon">📈</span>
+                        <div class="mode-option-content">
+                            <span class="mode-option-title">Sharp Analysis</span>
+                            <span class="mode-option-desc">Technical, data-focused</span>
+                        </div>
+                        <span class="mode-quality good">✓</span>
+                    </button>
+                    <button class="mode-option" data-mode="twitter">
+                        <span class="mode-option-icon">🐦</span>
+                        <div class="mode-option-content">
+                            <span class="mode-option-title">Twitter/X Style</span>
+                            <span class="mode-option-desc">Short, punchy thread format</span>
+                        </div>
+                        <span class="mode-quality good">✓</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-search">
+                    <input type="text" placeholder="Pesquisar..." class="search-input">
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-item active">
+                    <svg class="sidebar-icon" width="18" height="18"><use href="#icon-chart"/></svg>
+                    <span>Análises</span>
+                    <span class="badge">23</span>
+                </div>
+                <div class="sidebar-item">
+                    <svg class="sidebar-icon" width="18" height="18"><use href="#icon-fire"/></svg>
+                    <span>Apostas Populares</span>
+                </div>
+                <div class="sidebar-item">
+                    <svg class="sidebar-icon" width="18" height="18"><use href="#icon-trophy"/></svg>
+                    <span>Competições</span>
+                    <span class="badge">5</span>
+                </div>
+                <div class="sidebar-item" id="sidebar-analysts">
+                    <svg class="sidebar-icon" width="18" height="18"><use href="#icon-users"/></svg>
+                    <span>Top Analistas</span>
+                </div>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Esportes</div>
+                <div class="sidebar-item">
+                    <svg class="sidebar-icon" width="18" height="18"><use href="#icon-soccer"/></svg>
+                    <span>Futebol</span>
+                    <span class="badge accent">147</span>
+                </div>
+                <div class="sidebar-item">
+                    <svg class="sidebar-icon" width="18" height="18"><use href="#icon-darts"/></svg>
+                    <span>Dardos</span>
+                    <span class="badge">32</span>
+                </div>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Competições Populares</div>
+                <div class="sidebar-item">
+                    <img src="https://flagcdn.com/w20/gb-eng.png" alt="EN" class="flag-icon">
+                    <span>Premier League</span>
+                </div>
+                <div class="sidebar-item">
+                    <img src="https://flagcdn.com/w20/br.png" alt="BR" class="flag-icon">
+                    <span>Brasileirão Série A</span>
+                </div>
+                <div class="sidebar-item">
+                    <img src="https://flagcdn.com/w20/gb.png" alt="UK" class="flag-icon">
+                    <span>World Darts Championship</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Section Header -->
+            <div class="section-header">
+                <h1 class="section-title">Análises em Destaque</h1>
+                <div class="section-filters">
+                    <select class="filter-select">
+                        <option>Todos os Esportes</option>
+                        <option>Futebol</option>
+                        <option>Dardos</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>Mais Recentes</option>
+                        <option>Mais Populares</option>
+                        <option>Maior ROI</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Analysis Cards Grid -->
+            <div class="analyses-grid">
+                
+                <!-- ==================== ANALYSIS CARD 1: Man United vs Bournemouth ==================== -->
+                <article class="analysis-card" data-community="global" data-source-country="cz" onclick="openDetail(1)">
+                    <!-- Source Badge -->
+                    <div class="source-badge global">
+                        <svg width="14" height="14"><use href="#icon-external"/></svg>
+                        <span>via Global Community</span>
+                        <span class="source-country">
+                            <img src="https://flagcdn.com/w20/cz.png" alt="CZ" class="flag-icon-tiny">
+                            <span>Czech Republic</span>
+                        </span>
+                    </div>
+                    
+                    <!-- Translation Badge -->
+                    <div class="translation-badge" id="card1-badge">
+                        <svg width="12" height="12"><use href="#icon-translate"/></svg>
+                        <span>Translated</span>
+                        <span class="translator-service" id="card1-translator">· Enhanced by AI</span>
+                    </div>
+                    
+                    <div class="analysis-card-header">
+                        <div class="match-info">
+                            <span class="match-date">Today 21:00</span>
+                            <span class="match-title">Manchester United vs Bournemouth</span>
+                        </div>
+                        <span class="badge badge-success">Premier League</span>
+                    </div>
+                    
+                    <div class="analysis-card-prediction">
+                        <span class="prediction-label">Total Fouls:</span>
+                        <span class="prediction-value">Over 10</span>
+                        <div class="odds-change">
+                            <span class="new-odds">1.85</span>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-card-stats">
+                        <div class="stat">
+                            <svg width="16" height="16"><use href="#icon-wallet"/></svg>
+                            <span>$200</span>
+                        </div>
+                        <div class="stat">
+                            <svg width="16" height="16"><use href="#icon-target"/></svg>
+                            <span>$370</span>
+                        </div>
+                        <div class="stat confidence">
+                            <span>Confidence: 7/10</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Card Preview Text (changes with translation style) -->
+                    <div class="analysis-card-preview" id="card1-preview">
+                        <p>Both teams trending over on fouls. Bournemouth's road aggression (80% hit rate on 10+ fouls) plus referee Hooper's uptick in calls makes this a solid play.</p>
+                    </div>
+                    
+                    <!-- Author Section -->
+                    <div class="analysis-card-author">
+                        <div class="author-avatar-wrapper">
+                            <img src="https://i.pravatar.cc/32?img=1" alt="Author" class="author-avatar">
+                            <img src="https://flagcdn.com/w20/cz.png" alt="CZ" class="author-country-flag" title="Czech Republic">
+                        </div>
+                        <div class="author-info">
+                            <div class="author-name-with-badge">
+                                <span class="author-name">FootballPro_CZ</span>
+                                <span class="community-badge global">
+                                    <svg width="12" height="12"><use href="#icon-external"/></svg>
+                                    Global
+                                </span>
+                            </div>
+                            <span class="author-stats">
+                                <span class="roi-highlight positive">ROI +4.2%</span>
+                                <span class="stats-separator">•</span>
+                                ★★★★☆ • W 89 / L 67
+                            </span>
+                        </div>
+                        <button class="btn-follow">Follow</button>
+                    </div>
+                </article>
+
+                <!-- ==================== ANALYSIS CARD 2: Spellman vs Duff ==================== -->
+                <article class="analysis-card" data-community="global" data-source-country="cz" onclick="openDetail(2)">
+                    <!-- Source Badge -->
+                    <div class="source-badge global">
+                        <svg width="14" height="14"><use href="#icon-external"/></svg>
+                        <span>via Global Community</span>
+                        <span class="source-country">
+                            <img src="https://flagcdn.com/w20/cz.png" alt="CZ" class="flag-icon-tiny">
+                            <span>Czech Republic</span>
+                        </span>
+                    </div>
+                    
+                    <!-- Translation Badge -->
+                    <div class="translation-badge" id="card2-badge">
+                        <svg width="12" height="12"><use href="#icon-translate"/></svg>
+                        <span>Translated</span>
+                        <span class="translator-service" id="card2-translator">· Enhanced by AI</span>
+                    </div>
+                    
+                    <div class="analysis-card-header">
+                        <div class="match-info">
+                            <span class="match-date">Today 13:15</span>
+                            <span class="match-title">Spellman Alex vs Duff Neil</span>
+                        </div>
+                        <span class="badge badge-accent">World Darts Championship</span>
+                    </div>
+                    
+                    <div class="analysis-card-prediction">
+                        <span class="prediction-label">Match Winner:</span>
+                        <span class="prediction-value">Spellman Alex</span>
+                        <div class="odds-change">
+                            <span class="new-odds">2.10</span>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-card-stats">
+                        <div class="stat">
+                            <svg width="16" height="16"><use href="#icon-wallet"/></svg>
+                            <span>$150</span>
+                        </div>
+                        <div class="stat">
+                            <svg width="16" height="16"><use href="#icon-target"/></svg>
+                            <span>$315</span>
+                        </div>
+                        <div class="stat confidence">
+                            <span>Confidence: 6/10</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Card Preview Text -->
+                    <div class="analysis-card-preview" id="card2-preview">
+                        <p>Butler's replacement offers value. Spellman's 37%+ checkout rate beats Duff's declining numbers. Don't sleep on the substitute.</p>
+                    </div>
+                    
+                    <!-- Author Section -->
+                    <div class="analysis-card-author">
+                        <div class="author-avatar-wrapper">
+                            <img src="https://i.pravatar.cc/32?img=5" alt="Author" class="author-avatar">
+                            <img src="https://flagcdn.com/w20/cz.png" alt="CZ" class="author-country-flag" title="Czech Republic">
+                        </div>
+                        <div class="author-info">
+                            <div class="author-name-with-badge">
+                                <span class="author-name">DartsKing180</span>
+                                <span class="community-badge global">
+                                    <svg width="12" height="12"><use href="#icon-external"/></svg>
+                                    Global
+                                </span>
+                            </div>
+                            <span class="author-stats">
+                                <span class="roi-highlight positive high">ROI +8.7%</span>
+                                <span class="stats-separator">•</span>
+                                ★★★★★ • W 45 / L 28
+                            </span>
+                        </div>
+                        <button class="btn-follow following">Following</button>
+                    </div>
+                </article>
+
+                <!-- ==================== ANALYSIS CARD 3: Halkbank vs Spor Toto (Local/No Translation) ==================== -->
+                <article class="analysis-card local-analysis" data-community="local" data-source-country="br" onclick="openDetail(3)">
+                    <!-- Source Badge - Local Community -->
+                    <div class="source-badge local">
+                        <img src="https://flagcdn.com/w20/br.png" alt="BR" class="flag-icon">
+                        <span>BetBrasil Community</span>
+                    </div>
+                    
+                    <!-- No Translation Badge - Original Content -->
+                    
+                    <div class="analysis-card-header">
+                        <div class="match-info">
+                            <span class="match-date">Today 4:00 PM</span>
+                            <span class="match-title">Halkbank Ankara vs Spor Toto Ankara</span>
+                        </div>
+                        <span class="badge badge-warning">Turkish Volleyball League</span>
+                    </div>
+                    
+                    <div class="analysis-card-prediction">
+                        <span class="prediction-label">Match Winner:</span>
+                        <span class="prediction-value">Halkbank Ankara</span>
+                        <div class="odds-change">
+                            <span class="old-odds">1.52</span>
+                            <svg width="12" height="12"><use href="#icon-arrow-up"/></svg>
+                            <span class="new-odds">1.24</span>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-card-stats">
+                        <div class="stat">
+                            <svg width="16" height="16"><use href="#icon-wallet"/></svg>
+                            <span>5,500 CZK</span>
+                        </div>
+                        <div class="stat">
+                            <svg width="16" height="16"><use href="#icon-target"/></svg>
+                            <span>12,540 CZK</span>
+                        </div>
+                        <div class="stat confidence">
+                            <span>Confidence: 5/10</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Card Preview Text -->
+                    <div class="analysis-card-preview" id="card3-preview">
+                        <p>Halkbank bounced back with a 3-0 win over league leaders Ziraat. At home, after such a win, backing them against Spor Toto who improved with Cameja's arrival.</p>
+                    </div>
+                    
+                    <!-- Author Section -->
+                    <div class="analysis-card-author">
+                        <div class="author-avatar-wrapper">
+                            <img src="https://i.pravatar.cc/32?img=12" alt="Author" class="author-avatar">
+                            <img src="https://flagcdn.com/w20/br.png" alt="BR" class="author-country-flag" title="Brazil">
+                        </div>
+                        <div class="author-info">
+                            <div class="author-name-with-badge">
+                                <span class="author-name">VolleyBetPro</span>
+                                <span class="community-badge local">
+                                    <img src="https://flagcdn.com/w20/br.png" alt="BR" class="flag-icon-small">
+                                    BetBrasil
+                                </span>
+                            </div>
+                            <span class="author-stats">
+                                <span class="roi-highlight positive">ROI +6.3%</span>
+                                <span class="stats-separator">•</span>
+                                ★★★★☆ • W 67 / L 48
+                            </span>
+                        </div>
+                        <button class="btn-follow">Follow</button>
+                    </div>
+                </article>
+
+            </div>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="right-sidebar">
+            <!-- Top Analysts Widget -->
+            <div class="sidebar-card" id="analysts-widget">
+                <h3 class="sidebar-card-title">Top Analysts</h3>
+                
+                <div class="top-analysts">
+                    <div class="analyst-row">
+                        <span class="rank">1</span>
+                        <div class="analyst-avatar-wrapper">
+                            <img src="https://i.pravatar.cc/32?img=5" alt="Analyst" class="analyst-avatar">
+                            <img src="https://flagcdn.com/w20/cz.png" alt="CZ" class="author-country-flag" title="Czech Republic">
+                        </div>
+                        <div class="analyst-info">
+                            <span class="analyst-name">DartsKing180</span>
+                            <span class="analyst-roi-enhanced positive high">+8.7%</span>
+                        </div>
+                    </div>
+                    <div class="analyst-row">
+                        <span class="rank">2</span>
+                        <div class="analyst-avatar-wrapper">
+                            <img src="https://i.pravatar.cc/32?img=1" alt="Analyst" class="analyst-avatar">
+                            <img src="https://flagcdn.com/w20/cz.png" alt="CZ" class="author-country-flag" title="Czech Republic">
+                        </div>
+                        <div class="analyst-info">
+                            <span class="analyst-name">FootballPro_CZ</span>
+                            <span class="analyst-roi-enhanced positive">+4.2%</span>
+                        </div>
+                    </div>
+                    <div class="analyst-row">
+                        <span class="rank">3</span>
+                        <div class="analyst-avatar-wrapper">
+                            <img src="https://i.pravatar.cc/32?img=8" alt="Analyst" class="analyst-avatar">
+                            <img src="https://flagcdn.com/w20/br.png" alt="BR" class="author-country-flag" title="Brazil">
+                        </div>
+                        <div class="analyst-info">
+                            <span class="analyst-name">BetMaster_BR</span>
+                            <span class="analyst-roi-enhanced positive">+3.1%</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-see-all">View Full Ranking</button>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Detail Modal -->
+    <div class="modal-overlay" id="detail-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeDetail()">×</button>
+            
+            <!-- Analysis Header Card -->
+            <div class="analysis-detail-card">
+                <!-- Source Badge in Detail -->
+                <div class="detail-source-badge global">
+                    <svg width="18" height="18"><use href="#icon-external"/></svg>
+                    <span>Analysis via Global Community</span>
+                    <span class="detail-source-country">
+                        <img src="https://flagcdn.com/w20/cz.png" alt="CZ" class="flag-icon">
+                        Czech Republic
+                    </span>
+                </div>
+                
+                <!-- Translation Notice in Detail -->
+                <div class="detail-translation-notice" id="detail-translation-notice">
+                    <div class="translation-notice-content">
+                        <svg width="16" height="16"><use href="#icon-translate"/></svg>
+                        <div class="translation-notice-text">
+                            <span class="translation-notice-title" id="translation-notice-title">Translated · Enhanced by AI</span>
+                            <span class="translation-notice-desc" id="translation-notice-desc">Original analysis by <strong>FootballPro_CZ</strong> · Translated from Czech</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dynamic Match Header -->
+                <div class="detail-header" id="detail-header">
+                    <div class="match-meta">
+                        <div class="match-date-badge">
+                            <span class="day" id="detail-day">16</span>
+                            <span class="month" id="detail-month">Dec</span>
+                        </div>
+                        <div class="match-details">
+                            <span class="competition" id="detail-competition">Manchester United vs Bournemouth: Premier League</span>
+                            <div class="prediction-row">
+                                <span class="prediction-market" id="detail-prediction">Total Fouls: Over 10</span>
+                                <div class="odds-info">
+                                    <span class="current-odd increased" id="detail-odds">1.85</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stake & Win Info -->
+                <div class="stake-win-row">
+                    <div class="stake-info">
+                        <svg width="20" height="20"><use href="#icon-wallet"/></svg>
+                        <div class="info-content">
+                            <span class="label">Stake</span>
+                            <span class="value" id="detail-stake">$200</span>
+                        </div>
+                    </div>
+                    <div class="win-info">
+                        <svg width="20" height="20"><use href="#icon-target"/></svg>
+                        <div class="info-content">
+                            <span class="label">Potential Win</span>
+                            <span class="value" id="detail-win">$370</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Confidence Meter -->
+                <div class="confidence-meter">
+                    <div class="confidence-header">
+                        <span class="scale-label">0</span>
+                        <span class="confidence-label" id="detail-confidence">Confidence – 7</span>
+                        <span class="scale-label">10</span>
+                    </div>
+                    <div class="confidence-bar">
+                        <div class="confidence-segments" id="confidence-segments">
+                            <div class="segment filled"></div>
+                            <div class="segment filled"></div>
+                            <div class="segment filled"></div>
+                            <div class="segment filled"></div>
+                            <div class="segment filled"></div>
+                            <div class="segment filled"></div>
+                            <div class="segment filled"></div>
+                            <div class="segment"></div>
+                            <div class="segment"></div>
+                            <div class="segment"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analysis Content -->
+            <div class="analysis-content-card">
+                <!-- Content Toggle (Original vs Translated) -->
+                <div class="content-toggle-wrapper" id="content-toggle-wrapper">
+                    <div class="content-toggle">
+                        <button class="content-toggle-btn active" data-content="translated" id="btn-translated">
+                            <svg width="14" height="14"><use href="#icon-translate"/></svg>
+                            Translated
+                        </button>
+                        <button class="content-toggle-btn" data-content="original" id="btn-original">
+                            <img src="https://flagcdn.com/w20/cz.png" alt="CZ" class="flag-icon-tiny">
+                            Original (Czech)
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Author Section -->
+                <div class="author-section" id="detail-author">
+                    <div class="author-avatar-wrapper-lg">
+                        <img src="https://i.pravatar.cc/40?img=1" alt="FootballPro_CZ" class="author-avatar-lg" id="detail-avatar">
+                        <img src="https://flagcdn.com/w20/cz.png" alt="CZ" class="author-country-flag-lg" title="Czech Republic">
+                    </div>
+                    <div class="author-details">
+                        <div class="author-name-row">
+                            <span class="name" id="detail-author-name">FootballPro_CZ</span>
+                            <span class="community-badge global large">
+                                <svg width="14" height="14"><use href="#icon-external"/></svg>
+                                Global Community
+                            </span>
+                            <button class="btn-follow-sm">Follow</button>
+                        </div>
+                        <div class="author-metrics">
+                            <span class="roi-badge positive" id="detail-roi">ROI +4.2%</span>
+                            <span class="separator">•</span>
+                            <span class="rating">★★★★☆</span>
+                            <span class="separator">•</span>
+                            <span class="stat" id="detail-wins">W 89</span>
+                            <span class="separator">/</span>
+                            <span class="stat" id="detail-losses">L 67</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analysis Text Content - Changes based on translation style -->
+                <div class="analysis-text" id="analysis-text">
+                    <!-- Content will be dynamically inserted here -->
+                </div>
+
+                <!-- Quality Issues Warning (shown for DeepL raw) -->
+                <div class="quality-warning" id="quality-warning" style="display: none;">
+                    <div class="warning-header">
+                        <svg width="16" height="16"><use href="#icon-warning"/></svg>
+                        <span>Translation Quality Issues</span>
+                    </div>
+                    <ul class="warning-list" id="warning-list">
+                        <!-- Dynamic content -->
+                    </ul>
+                </div>
+
+                <!-- Inspired Bet CTA -->
+                <div class="inspired-bet-cta">
+                    <div class="cta-content">
+                        <span class="cta-label">Stake: $40, Potential Win: $74</span>
+                        <span class="cta-selection" id="cta-selection">Total Fouls: Over 10</span>
+                    </div>
+                    <button class="btn-inspired">
+                        Place Inspired Bet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Current translation style
+        let currentStyle = 'professional';
+        let currentDetailId = 1;
+        let showingOriginal = false;
+
+        // Analysis data with different translation styles
+        const analysisData = {
+            1: { // Man United vs Bournemouth
+                match: 'Manchester United vs Bournemouth',
+                competition: 'Premier League',
+                day: '16',
+                month: 'Dec',
+                prediction: 'Total Fouls: Over 10',
+                odds: '1.85',
+                stake: '$200',
+                win: '$370',
+                confidence: 7,
+                author: 'FootballPro_CZ',
+                avatar: 'https://i.pravatar.cc/40?img=1',
+                roi: '+4.2%',
+                wins: 89,
+                losses: 67,
+                original: {
+                    language: 'Czech',
+                    flag: 'cz',
+                    content: `
+                        <p>V zapase mezi United a Bournemouthem zahraji 10 faulu pro oba tymy.</p>
+                        <p>Manchester ma letos prumer 22.1 a doma 22.3, tahle sazka u nich prosla 7x z 15 a 3x ze 7 doma.</p>
+                        <p>Bournemouth ma 23.9 a venku 24.2, tahle sazka u nej prosla 7x z 15 a 3x ze 7 venku.</p>
+                        <p>Piska Hooper, který byl loni underovy s 19.8, letos ma naopak zatím 24.6.</p>
+                        <p>Zopakuji sazku Manchesteru z utkani s Wolves, s podobnym důvodem. I tady od Bournemouthu 10 cekam, na tohle číslo si letos sahnul 12x z 15 utkani. Melo by to pak byt zase o Manchesteru, který ma cisla nižší, ale vyssi narust faulu mu ted body prinesl, tak by v tom mohl pokracovat.</p>
+                    `
+                },
+                translations: {
+                    deepl: {
+                        preview: "In the match between United and Bournemouth they will play 10 fouls for both teams. Manchester have an average of 22.1 this season...",
+                        translator: "via DeepL only",
+                        content: `
+                            <p>In the match between United and Bournemouth they will play 10 fouls for both teams.</p>
+                            <p>Manchester have an average of 22.1 this season and 22.3 at home, this rate has gone 7 times out of 15 for them and 3 times out of 7 at home.</p>
+                            <p>Bournemouth have 23.9 and 24.2 away, this rate has gone 7 out of 15 for them and 3 out of 7 away.</p>
+                            <p>Piska Hooper, who was underdog last year with 19.8, has 24.6 so far this year.</p>
+                            <p>I'll repeat Manchester's rate from the Wolves game, with a similar reason. I'm expecting 10 from Bournemouth here too, they've reached that number 12 times out of 15 games this season. It should then be about Manchester again, who have lower numbers, but a higher foul count has brought them points now, so they could continue that.</p>
+                        `,
+                        issues: [
+                            '"they will play 10 fouls" → Should be "Over 10 total fouls" or "Fouls O/U 10"',
+                            '"this rate has gone" → Should be "hit the over" or "gone over"',
+                            '"Piska Hooper" → Should be "Referee Hooper" (translation error)',
+                            '"who was underdog" → Should be "who was under" (betting term)',
+                            'Missing clear thesis statement and betting angle',
+                            'Stats are jumbled and hard to follow'
+                        ]
+                    },
+                    professional: {
+                        preview: "Both teams trending over on fouls. Bournemouth's road aggression (80% hit rate on 10+ fouls) plus referee Hooper's uptick in calls makes this a solid play.",
+                        translator: "via DeepL + Claude",
+                        content: `
+                            <h3 class="section-heading">⚽ Manchester United vs. Bournemouth - Fouls Prop</h3>
+                            <p><strong>The Play:</strong> Total Fouls Over 10 (Combined)</p>
+                            
+                            <h3 class="section-heading">📊 Season Averages</h3>
+                            <div class="stats-grid">
+                                <div class="stats-team">
+                                    <strong>Manchester United:</strong>
+                                    <ul class="analysis-list">
+                                        <li>Overall: 22.1 fouls/game</li>
+                                        <li>Home: 22.3 fouls/game</li>
+                                        <li>Hit O10: 7 of 15 overall (47%), 3 of 7 at home (43%)</li>
+                                    </ul>
+                                </div>
+                                <div class="stats-team">
+                                    <strong>Bournemouth:</strong>
+                                    <ul class="analysis-list">
+                                        <li>Overall: 23.9 fouls/game</li>
+                                        <li>Away: 24.2 fouls/game</li>
+                                        <li>Hit O10: 7 of 15 overall (47%), 3 of 7 away (43%)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <h3 class="section-heading">🟨 Referee Factor</h3>
+                            <p><strong>Hooper</strong> - Key officiating trend:</p>
+                            <ul class="analysis-list">
+                                <li>Last season average: 19.8 fouls called</li>
+                                <li>This season: 24.6 fouls/game (significant uptick)</li>
+                            </ul>
+                            
+                            <h3 class="section-heading">📈 Why This Hits</h3>
+                            <ol class="analysis-list numbered">
+                                <li><strong>Bournemouth's consistency:</strong> They've hit 10+ fouls in 12 of 15 games (80%) this season</li>
+                                <li><strong>United's recent pattern:</strong> Similar to the Wolves match, higher foul counts have correlated with better results for them lately</li>
+                                <li><strong>Referee upgrade:</strong> Hooper's calling 4.8 more fouls per game than last season</li>
+                            </ol>
+                            
+                            <p><strong>Bottom line:</strong> Both teams trending over, favorable ref, Bournemouth's road aggression. Over 10 looks solid.</p>
+                        `
+                    },
+                    casual: {
+                        preview: "United at home with 22.3 fouls per game average. Bournemouth away? These guys are money on the road — they've hit 10+ fouls in 12 of 15 games (80%).",
+                        translator: "via DeepL + Claude",
+                        content: `
+                            <h3 class="section-heading">Man United vs Bournemouth - Fouls Play</h3>
+                            <p><strong>The bet:</strong> Over 10 total fouls</p>
+                            
+                            <h3 class="section-heading">Here's what we're working with:</h3>
+                            
+                            <p><strong>United at home:</strong></p>
+                            <p>22.3 fouls per game average. They've gone over 10 in about half their games (3 of 7 at home).</p>
+                            
+                            <p><strong>Bournemouth away:</strong></p>
+                            <p>24.2 fouls per game. These guys are money on the road for this prop — they've hit 10+ fouls in 12 of 15 games this season (80%). 🔥</p>
+                            
+                            <h3 class="section-heading">The ref angle:</h3>
+                            <p>Hooper's on the whistle. Dude was at 19.8 fouls/game last year, but he's way up this season at 24.6. He's letting them play less.</p>
+                            
+                            <h3 class="section-heading">Why I like it:</h3>
+                            <p>Bournemouth alone almost gets us there based on their season trend. Add in United's recent pattern (similar to the Wolves game where fouls actually helped them), plus a whistle-happy ref, and we're cooking. 👨‍🍳</p>
+                            
+                            <p><strong>Play: Over 10 total fouls ✅</strong></p>
+                        `
+                    },
+                    sharp: {
+                        preview: "PROP: Man United vs Bournemouth - Total Fouls O/U 10. Primary driver: Bournemouth road profile — 80% over rate (12/15 games hit 10+).",
+                        translator: "via DeepL + Claude",
+                        content: `
+                            <h3 class="section-heading">PROP: Man United vs Bournemouth - Total Fouls O/U 10</h3>
+                            <p><strong>Recommendation:</strong> Over 10</p>
+                            
+                            <h3 class="section-heading">Statistical Foundation</h3>
+                            <div class="form-stats">
+                                <div class="form-row">
+                                    <span class="team">Team</span>
+                                    <span class="form">Season Avg</span>
+                                    <span class="form">Home/Away</span>
+                                    <span class="form">O10 Hit Rate</span>
+                                </div>
+                                <div class="form-row">
+                                    <span class="team">Man United</span>
+                                    <span class="form">22.1</span>
+                                    <span class="form">22.3 (H)</span>
+                                    <span class="form">47% / 43% (H)</span>
+                                </div>
+                                <div class="form-row">
+                                    <span class="team">Bournemouth</span>
+                                    <span class="form">23.9</span>
+                                    <span class="form">24.2 (A)</span>
+                                    <span class="form">47% / 80% (12/15)</span>
+                                </div>
+                            </div>
+                            
+                            <h3 class="section-heading">Officiating Edge</h3>
+                            <p><strong>Referee:</strong> Hooper</p>
+                            <ul class="analysis-list">
+                                <li>YoY increase: +4.8 fouls/game (19.8→24.6)</li>
+                                <li>24% uptick in whistle frequency</li>
+                            </ul>
+                            
+                            <h3 class="section-heading">Angle Breakdown</h3>
+                            <ol class="analysis-list numbered">
+                                <li><strong>Primary driver:</strong> Bournemouth road profile
+                                    <ul class="analysis-list sub">
+                                        <li>80% over rate (12/15 games hit 10+)</li>
+                                        <li>Away average of 24.2 creates significant solo cushion</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Secondary support:</strong> United tactical shift
+                                    <ul class="analysis-list sub">
+                                        <li>Recent correlation: elevated foul counts → positive results</li>
+                                        <li>Wolves comp suggests defensive aggression continuing</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Officiating multiplier:</strong> Hooper trending tighter</li>
+                            </ol>
+                            
+                            <h3 class="section-heading">Line Value</h3>
+                            <p>O10 underpriced given Bournemouth's road consistency + ref profile. Bournemouth alone projects 10+ at 80% clip.</p>
+                            
+                            <p><strong>Action:</strong> Over 10 @ standard juice</p>
+                        `
+                    },
+                    twitter: {
+                        preview: "Man United vs Bournemouth 🎯 PLAY: Over 10 Total Fouls. Bournemouth away: 24.2 fouls/game, hit O10 in 12 of 15 games (80%!)",
+                        translator: "via DeepL + Claude",
+                        content: `
+                            <h3 class="section-heading">Man United vs Bournemouth 🎯</h3>
+                            
+                            <p><strong>PLAY: Over 10 Total Fouls</strong></p>
+                            
+                            <p><strong>The numbers:</strong></p>
+                            <ul class="analysis-list">
+                                <li>Bournemouth away: 24.2 fouls/game</li>
+                                <li>Hit O10 in 12 of 15 games (80%! 🔥)</li>
+                                <li>United home: 22.3 avg</li>
+                            </ul>
+                            
+                            <p>Ref Hooper is UP to 24.6 fouls/game this year (was 19.8 last season) 📈</p>
+                            
+                            <p>Bournemouth's road aggression + United playing physical lately + whistle-happy ref = 💰</p>
+                            
+                            <p><strong>Over 10 ✅</strong></p>
+                        `
+                    }
+                }
+            },
+            2: { // Spellman vs Duff
+                match: 'Spellman Alex vs Duff Neil',
+                competition: 'World Darts Championship',
+                day: '16',
+                month: 'Dec',
+                prediction: 'Match Winner: Spellman Alex',
+                odds: '2.10',
+                stake: '$150',
+                win: '$315',
+                confidence: 6,
+                author: 'DartsKing180',
+                avatar: 'https://i.pravatar.cc/40?img=5',
+                roi: '+8.7%',
+                wins: 45,
+                losses: 28,
+                original: {
+                    language: 'Czech',
+                    flag: 'cz',
+                    content: `
+                        <p>Ciao,</p>
+                        <p>tak Butlera kvůli problémům s cestováním nahradil nakonec Spellman, který před pár dny hrál zápas na MS, a já bych ho tady vůbec nepodceňoval.</p>
+                        <p>On sice ani v Ally Pally, ani na Grand Slamu v listopadu nepředvedl dobré výkony na pódiích, ale tohle bude přeci jenom něco jiného, a dlouhodobě ta čísla má, zejména na zavírání, velmi dobrá.</p>
+                        <p>Na zavírání má přes 37 %, a náhozy má za skoro 85.</p>
+                        <p>Duff už začíná stárnout, jeho čísla jsou sice pořád ucházející, ale už jdou postupně dolů, a na zavírání je o něco horší než Spellman.</p>
+                    `
+                },
+                translations: {
+                    deepl: {
+                        preview: "Ciao, so Butler was finally replaced by Spellman due to travel problems, who played a game at the WC a few days ago...",
+                        translator: "via DeepL only",
+                        content: `
+                            <p>Ciao,</p>
+                            <p>so Butler was finally replaced by Spellman due to travel problems, who played a game at the WC a few days ago, and I wouldn't underestimate him here at all.</p>
+                            <p>He didn't put in good performances on the podium in Ally Pally or at the Grand Slam in November, but this will be something else, and long term those numbers are very good, especially for closing.</p>
+                            <p>He's over 37% on closers, and he's almost 85 on putts.</p>
+                            <p>Duff is starting to age, his numbers are still passable, but they've been going down gradually, and he's a little worse than Spellman at closing.</p>
+                        `,
+                        issues: [
+                            '"podium" → Should be "stage" or "oche" (darts terminology)',
+                            '"closers" → Should be "checkout percentage" or "doubles"',
+                            '"putts" → Should be "average" (3-dart average)',
+                            '"WC" → Should be "Worlds" or "World Championship"',
+                            '"starting to age" → Vague, needs sharper phrasing',
+                            '"passable" → Too wishy-washy for betting analysis',
+                            'Missing comparative stats and betting angle'
+                        ]
+                    },
+                    professional: {
+                        preview: "Butler's replacement offers value. Spellman's 37%+ checkout rate beats Duff's declining numbers. Don't sleep on the substitute.",
+                        translator: "via DeepL + Claude",
+                        content: `
+                            <h3 class="section-heading">🎯 Butler Out → Spellman In vs. Duff</h3>
+                            
+                            <p>Butler's been replaced by Spellman due to travel issues. Spellman just played at the Worlds a few days back, and don't sleep on him here.</p>
+                            
+                            <h3 class="section-heading">📊 Spellman's Profile</h3>
+                            <ul class="analysis-list">
+                                <li>Yeah, he struggled on stage at Ally Pally and the Grand Slam in November</li>
+                                <li>BUT this is a different setup</li>
+                                <li>Long-term metrics are solid, especially on the doubles</li>
+                            </ul>
+                            
+                            <h3 class="section-heading">🔢 Spellman's Numbers</h3>
+                            <ul class="analysis-list">
+                                <li><strong>Checkout %:</strong> 37%+</li>
+                                <li><strong>3-Dart Average:</strong> ~85</li>
+                            </ul>
+                            
+                            <h3 class="section-heading">👴 The Duff Factor</h3>
+                            <ul class="analysis-list">
+                                <li>Father Time is catching up</li>
+                                <li>Numbers are still decent but declining</li>
+                                <li>Current trajectory shows a gradual drop-off</li>
+                                <li><strong>Key edge:</strong> Spellman's got him beat on checkout percentage</li>
+                            </ul>
+                        `
+                    },
+                    casual: {
+                        preview: "Butler's out (travel drama) → Spellman slides in to face Duff. Guy literally just played at the Worlds, and trust me, he's got a shot here.",
+                        translator: "via DeepL + Claude",
+                        content: `
+                            <h3 class="section-heading">Quick hit on the replacement:</h3>
+                            
+                            <p>Butler's out (travel drama) → Spellman slides in to face Duff. Guy literally just played at the Worlds, and trust me, he's got a shot here.</p>
+                            
+                            <h3 class="section-heading">What you need to know about Spellman:</h3>
+                            <p>His recent stage showings at Ally Pally and the Grand Slam? Rough. But forget that noise — long-term, his numbers hold up, especially finishing.</p>
+                            
+                            <h3 class="section-heading">Spellman's stats:</h3>
+                            <ul class="analysis-list">
+                                <li>✅ Checkout rate: 37%+</li>
+                                <li>✅ Average: ~85</li>
+                            </ul>
+                            
+                            <h3 class="section-heading">Now about Duff...</h3>
+                            <p>Look, the guy's getting up there in age. Stats are still serviceable, but they're on a downward slope. And here's the kicker: Spellman's better on doubles.</p>
+                            
+                            <p><strong>The play:</strong> Don't auto-fade Spellman just because he's the replacement. 🎯</p>
+                        `
+                    },
+                    sharp: {
+                        preview: "Matchup: Spellman (Replacement) vs. Duff. Butler scratched (travel). Spellman holds material advantage on doubles.",
+                        translator: "via DeepL + Claude",
+                        content: `
+                            <h3 class="section-heading">Matchup: Spellman (Replacement) vs. Duff</h3>
+                            
+                            <p>Butler scratched (travel). Spellman gets the nod — coming off a Worlds appearance.</p>
+                            
+                            <h3 class="section-heading">Spellman Assessment</h3>
+                            <p>Recent stage struggles (Ally Pally, Grand Slam) create recency bias. Underlying metrics tell a different story.</p>
+                            
+                            <h3 class="section-heading">Core Numbers</h3>
+                            <ul class="analysis-list">
+                                <li><strong>Checkout:</strong> 37.2%</li>
+                                <li><strong>Average:</strong> 84.8</li>
+                            </ul>
+                            
+                            <h3 class="section-heading">Duff Regression Analysis</h3>
+                            <p>Age-related decline evident in recent sample. Current metrics:</p>
+                            <ul class="analysis-list">
+                                <li>Still functional but trending down</li>
+                                <li>Checkout % trails Spellman's baseline</li>
+                                <li>Velocity concerns on finishing</li>
+                            </ul>
+                            
+                            <h3 class="section-heading">Edge Identification</h3>
+                            <p>Spellman holds material advantage on doubles. Market may overreact to replacement narrative + Duff's name value.</p>
+                            
+                            <p><strong>Actionable:</strong> Monitor opening lines. Spellman offers potential value.</p>
+                        `
+                    },
+                    twitter: {
+                        preview: "🎯 DARTS PLAY: Spellman ML. Butler OUT → Spellman IN. Checkout: 37%+ vs Duff's declining numbers.",
+                        translator: "via DeepL + Claude",
+                        content: `
+                            <h3 class="section-heading">🎯 DARTS PLAY</h3>
+                            
+                            <p><strong>Spellman ML vs Duff</strong></p>
+                            
+                            <p>Butler OUT (travel) → Spellman IN</p>
+                            
+                            <p>Don't fade the replacement 👀</p>
+                            
+                            <ul class="analysis-list">
+                                <li>Spellman checkout: 37%+</li>
+                                <li>3-dart avg: ~85</li>
+                                <li>Just played at the Worlds</li>
+                            </ul>
+                            
+                            <p>Duff? Numbers sliding 📉 Age catching up.</p>
+                            
+                            <p>Key edge: Spellman BETTER on doubles</p>
+                            
+                            <p>Market sleeping on the sub 💤</p>
+                        `
+                    }
+                }
+            },
+            3: { // Halkbank vs Spor Toto - Local content, no translation
+                match: 'Halkbank Ankara vs Spor Toto Ankara',
+                competition: 'Turkish Volleyball League',
+                day: '16',
+                month: 'Dec',
+                prediction: 'Match Winner: Halkbank Ankara',
+                odds: '1.24',
+                oldOdds: '1.52',
+                stake: '5,500 CZK',
+                win: '12,540 CZK',
+                confidence: 5,
+                author: 'VolleyBetPro',
+                avatar: 'https://i.pravatar.cc/40?img=12',
+                roi: '+6.3%',
+                wins: 67,
+                losses: 48,
+                isLocal: true, // No translation needed
+                translations: {
+                    // All styles show the same content for local analyses
+                    deepl: {
+                        preview: "Halkbank bounced back with a 3-0 win over league leaders Ziraat. At home, after such a win, backing them against Spor Toto who improved with Cameja's arrival.",
+                        content: `
+                            <p>Hello! 👋</p>
+                            <p>So, analysis of the Turkish men's league :-)</p>
+                            
+                            <h3 class="section-heading">Halkbank's Form</h3>
+                            <p>Halkbank did not have a good start to the league at all and they had so many stumbles that it was not expected. I myself do not really understand some of the steps, but so be it.</p>
+                            <p>However, in the last match they shone and defeated the best team in the league (in my opinion it will be like that in the end) <strong>Ziraat in 3 sets</strong>. Nimir maintained his super performance, but the hitters did not play for them and the defense was bad.</p>
+                            <p>Sokolov played again, which is one of the points that I do not understand, I would let Šotola play...</p>
+                            
+                            <h3 class="section-heading">The Pick</h3>
+                            <p>At home, after such a win, I will give them a chance against the quality Spor Toto, which went up after the arrival of <strong>Oreol Cameja</strong>. Ivović also improved his performances and Herrera keeps up good performances.</p>
+                            
+                            <h3 class="section-heading">Why Halkbank Wins</h3>
+                            <p>Even so, I think that they should not win away against the complex Halkbank lineup. Personally, I think that they will get them with their serve and on high balls, Halkbank's defense will work like against Ziraat, where they had <strong>11 blocks</strong>.</p>
+                            
+                            <p>Confidence is average and it could be a great match :-)</p>
+                        `
+                    },
+                    professional: {
+                        preview: "Halkbank bounced back with a 3-0 win over league leaders Ziraat. At home, after such a win, backing them against Spor Toto who improved with Cameja's arrival.",
+                        content: `
+                            <p>Hello! 👋</p>
+                            <p>So, analysis of the Turkish men's league :-)</p>
+                            
+                            <h3 class="section-heading">Halkbank's Form</h3>
+                            <p>Halkbank did not have a good start to the league at all and they had so many stumbles that it was not expected. I myself do not really understand some of the steps, but so be it.</p>
+                            <p>However, in the last match they shone and defeated the best team in the league (in my opinion it will be like that in the end) <strong>Ziraat in 3 sets</strong>. Nimir maintained his super performance, but the hitters did not play for them and the defense was bad.</p>
+                            <p>Sokolov played again, which is one of the points that I do not understand, I would let Šotola play...</p>
+                            
+                            <h3 class="section-heading">The Pick</h3>
+                            <p>At home, after such a win, I will give them a chance against the quality Spor Toto, which went up after the arrival of <strong>Oreol Cameja</strong>. Ivović also improved his performances and Herrera keeps up good performances.</p>
+                            
+                            <h3 class="section-heading">Why Halkbank Wins</h3>
+                            <p>Even so, I think that they should not win away against the complex Halkbank lineup. Personally, I think that they will get them with their serve and on high balls, Halkbank's defense will work like against Ziraat, where they had <strong>11 blocks</strong>.</p>
+                            
+                            <p>Confidence is average and it could be a great match :-)</p>
+                        `
+                    },
+                    casual: {
+                        preview: "Halkbank bounced back with a 3-0 win over league leaders Ziraat. At home, after such a win, backing them against Spor Toto who improved with Cameja's arrival.",
+                        content: `
+                            <p>Hello! 👋</p>
+                            <p>So, analysis of the Turkish men's league :-)</p>
+                            
+                            <h3 class="section-heading">Halkbank's Form</h3>
+                            <p>Halkbank did not have a good start to the league at all and they had so many stumbles that it was not expected. I myself do not really understand some of the steps, but so be it.</p>
+                            <p>However, in the last match they shone and defeated the best team in the league (in my opinion it will be like that in the end) <strong>Ziraat in 3 sets</strong>. Nimir maintained his super performance, but the hitters did not play for them and the defense was bad.</p>
+                            <p>Sokolov played again, which is one of the points that I do not understand, I would let Šotola play...</p>
+                            
+                            <h3 class="section-heading">The Pick</h3>
+                            <p>At home, after such a win, I will give them a chance against the quality Spor Toto, which went up after the arrival of <strong>Oreol Cameja</strong>. Ivović also improved his performances and Herrera keeps up good performances.</p>
+                            
+                            <h3 class="section-heading">Why Halkbank Wins</h3>
+                            <p>Even so, I think that they should not win away against the complex Halkbank lineup. Personally, I think that they will get them with their serve and on high balls, Halkbank's defense will work like against Ziraat, where they had <strong>11 blocks</strong>.</p>
+                            
+                            <p>Confidence is average and it could be a great match :-)</p>
+                        `
+                    },
+                    sharp: {
+                        preview: "Halkbank bounced back with a 3-0 win over league leaders Ziraat. At home, after such a win, backing them against Spor Toto who improved with Cameja's arrival.",
+                        content: `
+                            <p>Hello! 👋</p>
+                            <p>So, analysis of the Turkish men's league :-)</p>
+                            
+                            <h3 class="section-heading">Halkbank's Form</h3>
+                            <p>Halkbank did not have a good start to the league at all and they had so many stumbles that it was not expected. I myself do not really understand some of the steps, but so be it.</p>
+                            <p>However, in the last match they shone and defeated the best team in the league (in my opinion it will be like that in the end) <strong>Ziraat in 3 sets</strong>. Nimir maintained his super performance, but the hitters did not play for them and the defense was bad.</p>
+                            <p>Sokolov played again, which is one of the points that I do not understand, I would let Šotola play...</p>
+                            
+                            <h3 class="section-heading">The Pick</h3>
+                            <p>At home, after such a win, I will give them a chance against the quality Spor Toto, which went up after the arrival of <strong>Oreol Cameja</strong>. Ivović also improved his performances and Herrera keeps up good performances.</p>
+                            
+                            <h3 class="section-heading">Why Halkbank Wins</h3>
+                            <p>Even so, I think that they should not win away against the complex Halkbank lineup. Personally, I think that they will get them with their serve and on high balls, Halkbank's defense will work like against Ziraat, where they had <strong>11 blocks</strong>.</p>
+                            
+                            <p>Confidence is average and it could be a great match :-)</p>
+                        `
+                    },
+                    twitter: {
+                        preview: "Halkbank bounced back with a 3-0 win over league leaders Ziraat. At home, after such a win, backing them against Spor Toto who improved with Cameja's arrival.",
+                        content: `
+                            <p>Hello! 👋</p>
+                            <p>So, analysis of the Turkish men's league :-)</p>
+                            
+                            <h3 class="section-heading">Halkbank's Form</h3>
+                            <p>Halkbank did not have a good start to the league at all and they had so many stumbles that it was not expected. I myself do not really understand some of the steps, but so be it.</p>
+                            <p>However, in the last match they shone and defeated the best team in the league (in my opinion it will be like that in the end) <strong>Ziraat in 3 sets</strong>. Nimir maintained his super performance, but the hitters did not play for them and the defense was bad.</p>
+                            <p>Sokolov played again, which is one of the points that I do not understand, I would let Šotola play...</p>
+                            
+                            <h3 class="section-heading">The Pick</h3>
+                            <p>At home, after such a win, I will give them a chance against the quality Spor Toto, which went up after the arrival of <strong>Oreol Cameja</strong>. Ivović also improved his performances and Herrera keeps up good performances.</p>
+                            
+                            <h3 class="section-heading">Why Halkbank Wins</h3>
+                            <p>Even so, I think that they should not win away against the complex Halkbank lineup. Personally, I think that they will get them with their serve and on high balls, Halkbank's defense will work like against Ziraat, where they had <strong>11 blocks</strong>.</p>
+                            
+                            <p>Confidence is average and it could be a great match :-)</p>
+                        `
+                    }
+                }
+            }
+        };
+
+        // Style information
+        const styleInfo = {
+            deepl: {
+                name: 'DeepL (Raw)',
+                description: 'Raw machine translation without any enhancement. Contains terminology errors, awkward phrasing, and lacks proper betting context.',
+                quality: 'bad',
+                processStep: 'none'
+            },
+            professional: {
+                name: 'Professional',
+                description: 'Clean, structured analysis with proper betting terminology. Easy to scan with clear sections and emojis for visual hierarchy.',
+                quality: 'good',
+                processStep: 'enhance'
+            },
+            casual: {
+                name: 'Casual Tipster',
+                description: 'Friendly, conversational US betting style. Uses colloquial language while maintaining accuracy. Great for engagement.',
+                quality: 'good',
+                processStep: 'enhance'
+            },
+            sharp: {
+                name: 'Sharp Analysis',
+                description: 'Technical, data-focused format for serious bettors. Emphasizes statistical edge and line value assessment.',
+                quality: 'good',
+                processStep: 'enhance'
+            },
+            twitter: {
+                name: 'Twitter/X Style',
+                description: 'Short, punchy thread format optimized for social media. High-impact, scannable content with emojis.',
+                quality: 'good',
+                processStep: 'enhance'
+            }
+        };
+
+        // Set translation style
+        function setStyle(style) {
+            currentStyle = style;
+            
+            // Update dropdown options
+            document.querySelectorAll('.mode-option').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.mode === style);
+            });
+            
+            // Update toggle button label
+            document.getElementById('mode-label').textContent = styleInfo[style].name;
+            
+            // Close dropdown
+            document.getElementById('mode-dropdown').classList.remove('open');
+            
+            // Update sidebar info
+            const info = styleInfo[style];
+            document.getElementById('style-name').textContent = info.name;
+            document.getElementById('style-description').textContent = info.description;
+            
+            const qualityEl = document.getElementById('style-quality');
+            if (info.quality === 'bad') {
+                qualityEl.style.display = 'flex';
+                qualityEl.className = 'style-quality-indicator bad';
+                qualityEl.innerHTML = `<svg width="14" height="14"><use href="#icon-warning"/></svg><span>Quality issues present</span>`;
+            } else {
+                qualityEl.style.display = 'none';
+            }
+            
+            // Update process steps
+            const enhanceStep = document.getElementById('step-enhance');
+            if (style === 'deepl') {
+                enhanceStep.classList.remove('active');
+                enhanceStep.classList.add('skipped');
+            } else {
+                enhanceStep.classList.add('active');
+                enhanceStep.classList.remove('skipped');
+            }
+            
+            // Update card previews
+            updateCardPreviews();
+            
+            // Update detail modal if open
+            if (document.getElementById('detail-modal').classList.contains('active')) {
+                updateDetailContent(currentDetailId);
+            }
+        }
+
+        // Update card previews based on current style
+        function updateCardPreviews() {
+            for (let id in analysisData) {
+                const data = analysisData[id];
+                const previewEl = document.getElementById(`card${id}-preview`);
+                const translatorEl = document.getElementById(`card${id}-translator`);
+                const badgeEl = document.getElementById(`card${id}-badge`);
+                
+                if (previewEl && data.translations[currentStyle]) {
+                    previewEl.innerHTML = `<p>${data.translations[currentStyle].preview}</p>`;
+                }
+                if (translatorEl) {
+                    translatorEl.textContent = '· Enhanced by AI';
+                }
+            }
+        }
+
+        // Update detail content
+        function updateDetailContent(id) {
+            const data = analysisData[id];
+            const translation = data.translations[currentStyle];
+            
+            // Update header info
+            document.getElementById('detail-day').textContent = data.day;
+            document.getElementById('detail-month').textContent = data.month;
+            document.getElementById('detail-competition').textContent = `${data.match}: ${data.competition}`;
+            document.getElementById('detail-prediction').textContent = data.prediction;
+            document.getElementById('detail-odds').textContent = data.odds;
+            document.getElementById('detail-stake').textContent = data.stake;
+            document.getElementById('detail-win').textContent = data.win;
+            document.getElementById('detail-confidence').textContent = `Confidence – ${data.confidence}`;
+            
+            // Update confidence segments
+            const segmentsHtml = Array.from({length: 10}, (_, i) => 
+                `<div class="segment ${i < data.confidence ? 'filled' : ''}"></div>`
+            ).join('');
+            document.getElementById('confidence-segments').innerHTML = segmentsHtml;
+            
+            // Update author info
+            document.getElementById('detail-avatar').src = data.avatar;
+            document.getElementById('detail-author-name').textContent = data.author;
+            document.getElementById('detail-roi').textContent = `ROI ${data.roi}`;
+            document.getElementById('detail-wins').textContent = `W ${data.wins}`;
+            document.getElementById('detail-losses').textContent = `L ${data.losses}`;
+            
+            // Update community badge
+            const communityBadge = document.querySelector('.author-name-row .community-badge');
+            if (data.isLocal) {
+                communityBadge.className = 'community-badge local large';
+                communityBadge.innerHTML = `
+                    <img src="https://flagcdn.com/w20/br.png" alt="BR" class="flag-icon-small">
+                    BetBrasil Community
+                `;
+            } else {
+                communityBadge.className = 'community-badge global large';
+                communityBadge.innerHTML = `
+                    <svg width="14" height="14"><use href="#icon-external"/></svg>
+                    Global Community
+                `;
+            }
+            
+            // Update author country flag
+            const authorFlag = document.querySelector('.author-avatar-wrapper-lg .author-country-flag-lg');
+            if (data.isLocal) {
+                authorFlag.src = 'https://flagcdn.com/w20/br.png';
+                authorFlag.alt = 'BR';
+                authorFlag.title = 'Brazil';
+            } else {
+                authorFlag.src = 'https://flagcdn.com/w20/cz.png';
+                authorFlag.alt = 'CZ';
+                authorFlag.title = 'Czech Republic';
+            }
+            
+            // Update CTA
+            document.getElementById('cta-selection').textContent = data.prediction;
+            
+            // Update translation notice
+            const translationNotice = document.getElementById('detail-translation-notice');
+            const noticeTitle = document.getElementById('translation-notice-title');
+            const noticeDesc = document.getElementById('translation-notice-desc');
+            const sourceBadge = document.querySelector('.detail-source-badge');
+            
+            if (data.isLocal) {
+                // Local content - no translation needed
+                translationNotice.style.display = 'none';
+                sourceBadge.className = 'detail-source-badge local';
+                sourceBadge.innerHTML = `
+                    <img src="https://flagcdn.com/w20/br.png" alt="BR" class="flag-icon">
+                    <span>Analysis from BetBrasil Community</span>
+                `;
+            } else {
+                // Translated content
+                translationNotice.style.display = 'block';
+                sourceBadge.className = 'detail-source-badge global';
+                sourceBadge.innerHTML = `
+                    <svg width="18" height="18"><use href="#icon-external"/></svg>
+                    <span>Analysis via Global Community</span>
+                    <span class="detail-source-country">
+                        <img src="https://flagcdn.com/w20/cz.png" alt="CZ" class="flag-icon">
+                        Czech Republic
+                    </span>
+                `;
+                
+                noticeTitle.innerHTML = `Translated · Enhanced by AI`;
+                noticeDesc.innerHTML = `Original analysis by <strong>${data.author}</strong> · Translated from Czech`;
+            }
+            
+            // Update analysis content
+            updateAnalysisContent(data);
+            
+            // Show/hide content toggle based on whether content has original
+            const toggleWrapper = document.getElementById('content-toggle-wrapper');
+            if (data.original && !data.isLocal) {
+                toggleWrapper.style.display = 'block';
+                // Update original button flag
+                document.querySelector('#btn-original img').src = `https://flagcdn.com/w20/${data.original.flag}.png`;
+                document.querySelector('#btn-original').innerHTML = `
+                    <img src="https://flagcdn.com/w20/${data.original.flag}.png" alt="${data.original.flag.toUpperCase()}" class="flag-icon-tiny">
+                    Original (${data.original.language})
+                `;
+            } else {
+                toggleWrapper.style.display = 'none';
+            }
+            
+            // Reset to translated view when opening modal
+            showingOriginal = false;
+            document.getElementById('btn-translated').classList.add('active');
+            document.getElementById('btn-original').classList.remove('active');
+            
+            // Show/hide quality warning
+            const warningEl = document.getElementById('quality-warning');
+            if (currentStyle === 'deepl' && translation.issues) {
+                warningEl.style.display = 'block';
+                document.getElementById('warning-list').innerHTML = translation.issues
+                    .map(issue => `<li>${issue}</li>`)
+                    .join('');
+            } else {
+                warningEl.style.display = 'none';
+            }
+        }
+
+        // Toggle dropdown
+        document.getElementById('mode-toggle').addEventListener('click', (e) => {
+            e.stopPropagation();
+            document.getElementById('mode-dropdown').classList.toggle('open');
+        });
+
+        // Mode option click handlers
+        document.querySelectorAll('.mode-option').forEach(btn => {
+            btn.addEventListener('click', () => {
+                setStyle(btn.dataset.mode);
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', () => {
+            document.getElementById('mode-dropdown').classList.remove('open');
+        });
+
+        // Update analysis content (translated or original)
+        function updateAnalysisContent(data) {
+            const analysisText = document.getElementById('analysis-text');
+            
+            if (showingOriginal && data.original) {
+                // Show original content with language indicator
+                analysisText.innerHTML = `
+                    <div class="original-content-notice">
+                        <img src="https://flagcdn.com/w20/${data.original.flag}.png" alt="${data.original.flag.toUpperCase()}" class="flag-icon">
+                        <span>Original content in ${data.original.language}</span>
+                    </div>
+                    ${data.original.content}
+                `;
+                analysisText.classList.add('original-text');
+            } else {
+                // Show translated content
+                const translation = data.translations[currentStyle];
+                analysisText.innerHTML = translation.content;
+                analysisText.classList.remove('original-text');
+            }
+        }
+
+        // Content toggle handlers
+        document.getElementById('btn-translated').addEventListener('click', () => {
+            if (showingOriginal) {
+                showingOriginal = false;
+                document.getElementById('btn-translated').classList.add('active');
+                document.getElementById('btn-original').classList.remove('active');
+                updateAnalysisContent(analysisData[currentDetailId]);
+            }
+        });
+
+        document.getElementById('btn-original').addEventListener('click', () => {
+            if (!showingOriginal) {
+                showingOriginal = true;
+                document.getElementById('btn-original').classList.add('active');
+                document.getElementById('btn-translated').classList.remove('active');
+                updateAnalysisContent(analysisData[currentDetailId]);
+            }
+        });
+
+        // Modal functions
+        function openDetail(id) {
+            currentDetailId = id;
+            updateDetailContent(id);
+            document.getElementById('detail-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDetail() {
+            document.getElementById('detail-modal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal on overlay click
+        document.getElementById('detail-modal').addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal-overlay')) {
+                closeDetail();
+            }
+        });
+
+        // Close on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeDetail();
+            }
+        });
+
+        // Follow button toggle
+        document.querySelectorAll('.btn-follow').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (btn.classList.contains('following')) {
+                    btn.classList.remove('following');
+                    btn.textContent = 'Follow';
+                } else {
+                    btn.classList.add('following');
+                    btn.textContent = 'Following';
+                }
+            });
+        });
+
+        // Initialize with professional style
+        setStyle('professional');
+    </script>
+</body>
+</html>
