@@ -137,7 +137,7 @@
                         </div>
                         <span class="mode-quality bad">⚠️</span>
                     </button>
-                    <button class="mode-option active" data-mode="professional">
+                    <button class="mode-option" data-mode="professional">
                         <span class="mode-option-icon">📊</span>
                         <div class="mode-option-content">
                             <span class="mode-option-title">Professional</span>
@@ -153,11 +153,11 @@
                         </div>
                         <span class="mode-quality good">✓</span>
                     </button>
-                    <button class="mode-option" data-mode="sharp">
+                    <button class="mode-option active" data-mode="sharp">
                         <span class="mode-option-icon">📈</span>
                         <div class="mode-option-content">
                             <span class="mode-option-title">Sharp Analysis</span>
-                            <span class="mode-option-desc">Technical, data-focused</span>
+                            <span class="mode-option-desc">Technical, data-focused (Default)</span>
                         </div>
                         <span class="mode-quality good">✓</span>
                     </button>
@@ -169,6 +169,12 @@
                         </div>
                         <span class="mode-quality good">✓</span>
                     </button>
+                    <div class="mode-dropdown-footer">
+                        <div class="preference-indicator">
+                            <svg width="14" height="14"><use href="#icon-check"/></svg>
+                            <span>Your preference is automatically saved</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -268,17 +274,12 @@
                     <div class="source-badge global">
                         <svg width="14" height="14"><use href="#icon-external"/></svg>
                         <span>via Global Community</span>
-                        <span class="source-country">
-                            <img src="https://flagcdn.com/w20/cz.png" alt="CZ" class="flag-icon-tiny">
-                            <span>Czech Republic</span>
-                        </span>
                     </div>
                     
                     <!-- Translation Badge -->
                     <div class="translation-badge" id="card1-badge">
                         <svg width="12" height="12"><use href="#icon-translate"/></svg>
                         <span>Translated</span>
-                        <span class="translator-service" id="card1-translator">· Enhanced by AI</span>
                     </div>
                     
                     <div class="analysis-card-header">
@@ -324,7 +325,7 @@
                         </div>
                         <div class="author-info">
                             <div class="author-name-with-badge">
-                                <span class="author-name">FootballPro_CZ</span>
+                                <span class="author-name">Community Analyst #1247</span>
                                 <span class="community-badge global">
                                     <svg width="12" height="12"><use href="#icon-external"/></svg>
                                     Global
@@ -346,17 +347,12 @@
                     <div class="source-badge global">
                         <svg width="14" height="14"><use href="#icon-external"/></svg>
                         <span>via Global Community</span>
-                        <span class="source-country">
-                            <img src="https://flagcdn.com/w20/cz.png" alt="CZ" class="flag-icon-tiny">
-                            <span>Czech Republic</span>
-                        </span>
                     </div>
                     
                     <!-- Translation Badge -->
                     <div class="translation-badge" id="card2-badge">
                         <svg width="12" height="12"><use href="#icon-translate"/></svg>
                         <span>Translated</span>
-                        <span class="translator-service" id="card2-translator">· Enhanced by AI</span>
                     </div>
                     
                     <div class="analysis-card-header">
@@ -402,7 +398,7 @@
                         </div>
                         <div class="author-info">
                             <div class="author-name-with-badge">
-                                <span class="author-name">DartsKing180</span>
+                                <span class="author-name">Community Analyst #8832</span>
                                 <span class="community-badge global">
                                     <svg width="12" height="12"><use href="#icon-external"/></svg>
                                     Global
@@ -506,7 +502,7 @@
                             <img src="https://flagcdn.com/w20/cz.png" alt="CZ" class="author-country-flag" title="Czech Republic">
                         </div>
                         <div class="analyst-info">
-                            <span class="analyst-name">DartsKing180</span>
+                            <span class="analyst-name">Analyst #8832</span>
                             <span class="analyst-roi-enhanced positive high">+8.7%</span>
                         </div>
                     </div>
@@ -517,7 +513,7 @@
                             <img src="https://flagcdn.com/w20/cz.png" alt="CZ" class="author-country-flag" title="Czech Republic">
                         </div>
                         <div class="analyst-info">
-                            <span class="analyst-name">FootballPro_CZ</span>
+                            <span class="analyst-name">Analyst #1247</span>
                             <span class="analyst-roi-enhanced positive">+4.2%</span>
                         </div>
                     </div>
@@ -548,22 +544,7 @@
                 <!-- Source Badge in Detail -->
                 <div class="detail-source-badge global">
                     <svg width="18" height="18"><use href="#icon-external"/></svg>
-                    <span>Analysis via Global Community</span>
-                    <span class="detail-source-country">
-                        <img src="https://flagcdn.com/w20/cz.png" alt="CZ" class="flag-icon">
-                        Czech Republic
-                    </span>
-                </div>
-                
-                <!-- Translation Notice in Detail -->
-                <div class="detail-translation-notice" id="detail-translation-notice">
-                    <div class="translation-notice-content">
-                        <svg width="16" height="16"><use href="#icon-translate"/></svg>
-                        <div class="translation-notice-text">
-                            <span class="translation-notice-title" id="translation-notice-title">Translated · Enhanced by AI</span>
-                            <span class="translation-notice-desc" id="translation-notice-desc">Original analysis by <strong>FootballPro_CZ</strong> · Translated from Czech</span>
-                        </div>
-                    </div>
+                    <span>This analysis was shared via our Global analysts community</span>
                 </div>
                 
                 <!-- Dynamic Match Header -->
@@ -629,16 +610,25 @@
 
             <!-- Analysis Content -->
             <div class="analysis-content-card">
-                <!-- Content Toggle (Original vs Translated) -->
+                <!-- Translation Style Selector -->
                 <div class="content-toggle-wrapper" id="content-toggle-wrapper">
                     <div class="content-toggle">
-                        <button class="content-toggle-btn active" data-content="translated" id="btn-translated">
-                            <svg width="14" height="14"><use href="#icon-translate"/></svg>
-                            Translated
-                        </button>
+                        <div class="style-dropdown-container">
+                            <select class="style-dropdown-select" id="style-dropdown-select">
+                                <optgroup label="AI Enhanced">
+                                    <option value="sharp" selected>📈 Sharp Analysis ⭐</option>
+                                    <option value="professional">📊 Professional</option>
+                                    <option value="casual">🎯 Casual Tipster</option>
+                                    <option value="twitter">🐦 Twitter/X Style</option>
+                                </optgroup>
+                                <optgroup label="Literal Translation">
+                                    <option value="deepl">🤖 Original Translated (DeepL)</option>
+                                </optgroup>
+                            </select>
+                        </div>
                         <button class="content-toggle-btn" data-content="original" id="btn-original">
-                            <img src="https://flagcdn.com/w20/cz.png" alt="CZ" class="flag-icon-tiny">
-                            Original (Czech)
+                            <svg width="14" height="14"><use href="#icon-translate"/></svg>
+                            Original Translated
                         </button>
                     </div>
                 </div>
@@ -651,7 +641,7 @@
                     </div>
                     <div class="author-details">
                         <div class="author-name-row">
-                            <span class="name" id="detail-author-name">FootballPro_CZ</span>
+                            <span class="name" id="detail-author-name">Community Analyst</span>
                             <span class="community-badge global large">
                                 <svg width="14" height="14"><use href="#icon-external"/></svg>
                                 Global Community
@@ -675,16 +665,6 @@
                     <!-- Content will be dynamically inserted here -->
                 </div>
 
-                <!-- Quality Issues Warning (shown for DeepL raw) -->
-                <div class="quality-warning" id="quality-warning" style="display: none;">
-                    <div class="warning-header">
-                        <svg width="16" height="16"><use href="#icon-warning"/></svg>
-                        <span>Translation Quality Issues</span>
-                    </div>
-                    <ul class="warning-list" id="warning-list">
-                        <!-- Dynamic content -->
-                    </ul>
-                </div>
 
                 <!-- Inspired Bet CTA -->
                 <div class="inspired-bet-cta">
@@ -695,6 +675,16 @@
                     <button class="btn-inspired">
                         Place Inspired Bet
                     </button>
+                </div>
+                
+                <!-- Translation Notice at Bottom -->
+                <div class="detail-translation-notice bottom" id="detail-translation-notice">
+                    <div class="translation-notice-content">
+                        <svg width="16" height="16"><use href="#icon-translate"/></svg>
+                        <div class="translation-notice-text">
+                            <span class="translation-notice-desc" id="translation-notice-desc">The original analysis comes from a real human analyst. We used AI agents to translate and make it easier for you to read.</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1224,6 +1214,9 @@
         function setStyle(style) {
             currentStyle = style;
             
+            // Save to localStorage
+            localStorage.setItem('preferredTranslationStyle', style);
+            
             // Update dropdown options
             document.querySelectorAll('.mode-option').forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.mode === style);
@@ -1232,32 +1225,14 @@
             // Update toggle button label
             document.getElementById('mode-label').textContent = styleInfo[style].name;
             
+            // Update detail modal dropdown if it exists
+            const detailDropdown = document.getElementById('style-dropdown-select');
+            if (detailDropdown) {
+                detailDropdown.value = style;
+            }
+            
             // Close dropdown
             document.getElementById('mode-dropdown').classList.remove('open');
-            
-            // Update sidebar info
-            const info = styleInfo[style];
-            document.getElementById('style-name').textContent = info.name;
-            document.getElementById('style-description').textContent = info.description;
-            
-            const qualityEl = document.getElementById('style-quality');
-            if (info.quality === 'bad') {
-                qualityEl.style.display = 'flex';
-                qualityEl.className = 'style-quality-indicator bad';
-                qualityEl.innerHTML = `<svg width="14" height="14"><use href="#icon-warning"/></svg><span>Quality issues present</span>`;
-            } else {
-                qualityEl.style.display = 'none';
-            }
-            
-            // Update process steps
-            const enhanceStep = document.getElementById('step-enhance');
-            if (style === 'deepl') {
-                enhanceStep.classList.remove('active');
-                enhanceStep.classList.add('skipped');
-            } else {
-                enhanceStep.classList.add('active');
-                enhanceStep.classList.remove('skipped');
-            }
             
             // Update card previews
             updateCardPreviews();
@@ -1273,14 +1248,9 @@
             for (let id in analysisData) {
                 const data = analysisData[id];
                 const previewEl = document.getElementById(`card${id}-preview`);
-                const translatorEl = document.getElementById(`card${id}-translator`);
-                const badgeEl = document.getElementById(`card${id}-badge`);
                 
                 if (previewEl && data.translations[currentStyle]) {
                     previewEl.innerHTML = `<p>${data.translations[currentStyle].preview}</p>`;
-                }
-                if (translatorEl) {
-                    translatorEl.textContent = '· Enhanced by AI';
                 }
             }
         }
@@ -1308,7 +1278,9 @@
             
             // Update author info
             document.getElementById('detail-avatar').src = data.avatar;
-            document.getElementById('detail-author-name').textContent = data.author;
+            // Anonymize author names
+            const authorName = data.isLocal ? data.author : 'Community Analyst';
+            document.getElementById('detail-author-name').textContent = authorName;
             document.getElementById('detail-roi').textContent = `ROI ${data.roi}`;
             document.getElementById('detail-wins').textContent = `W ${data.wins}`;
             document.getElementById('detail-losses').textContent = `L ${data.losses}`;
@@ -1360,19 +1332,14 @@
                 `;
             } else {
                 // Translated content
-                translationNotice.style.display = 'block';
+                translationNotice.style.display = 'flex';
                 sourceBadge.className = 'detail-source-badge global';
                 sourceBadge.innerHTML = `
                     <svg width="18" height="18"><use href="#icon-external"/></svg>
-                    <span>Analysis via Global Community</span>
-                    <span class="detail-source-country">
-                        <img src="https://flagcdn.com/w20/cz.png" alt="CZ" class="flag-icon">
-                        Czech Republic
-                    </span>
+                    <span>This analysis was shared via our Global analysts community</span>
                 `;
                 
-                noticeTitle.innerHTML = `Translated · Enhanced by AI`;
-                noticeDesc.innerHTML = `Original analysis by <strong>${data.author}</strong> · Translated from Czech`;
+                noticeDesc.innerHTML = `The original analysis comes from a real human analyst. We used AI agents to translate and make it easier for you to read.`;
             }
             
             // Update analysis content
@@ -1382,30 +1349,18 @@
             const toggleWrapper = document.getElementById('content-toggle-wrapper');
             if (data.original && !data.isLocal) {
                 toggleWrapper.style.display = 'block';
-                // Update original button flag
-                document.querySelector('#btn-original img').src = `https://flagcdn.com/w20/${data.original.flag}.png`;
-                document.querySelector('#btn-original').innerHTML = `
-                    <img src="https://flagcdn.com/w20/${data.original.flag}.png" alt="${data.original.flag.toUpperCase()}" class="flag-icon-tiny">
-                    Original (${data.original.language})
-                `;
             } else {
                 toggleWrapper.style.display = 'none';
             }
             
-            // Reset to translated view when opening modal
+            // Reset to AI-enhanced view when opening modal
             showingOriginal = false;
-            document.getElementById('btn-translated').classList.add('active');
             document.getElementById('btn-original').classList.remove('active');
             
-            // Show/hide quality warning
-            const warningEl = document.getElementById('quality-warning');
-            if (currentStyle === 'deepl' && translation.issues) {
-                warningEl.style.display = 'block';
-                document.getElementById('warning-list').innerHTML = translation.issues
-                    .map(issue => `<li>${issue}</li>`)
-                    .join('');
-            } else {
-                warningEl.style.display = 'none';
+            // Set dropdown to current style
+            const styleDropdown = document.getElementById('style-dropdown-select');
+            if (styleDropdown) {
+                styleDropdown.value = currentStyle;
             }
         }
 
@@ -1431,39 +1386,51 @@
         function updateAnalysisContent(data) {
             const analysisText = document.getElementById('analysis-text');
             
-            if (showingOriginal && data.original) {
-                // Show original content with language indicator
+            if (showingOriginal) {
+                // Show DeepL raw translation (literal translation)
+                const deeplTranslation = data.translations.deepl;
                 analysisText.innerHTML = `
-                    <div class="original-content-notice">
-                        <img src="https://flagcdn.com/w20/${data.original.flag}.png" alt="${data.original.flag.toUpperCase()}" class="flag-icon">
-                        <span>Original content in ${data.original.language}</span>
+                    <div class="original-content-notice literal">
+                        <svg width="14" height="14"><use href="#icon-translate"/></svg>
+                        <span>Literal Translation (DeepL) · Unedited</span>
                     </div>
-                    ${data.original.content}
+                    ${deeplTranslation.content}
                 `;
-                analysisText.classList.add('original-text');
+                analysisText.classList.add('original-text', 'literal-translation');
             } else {
-                // Show translated content
+                // Show AI-enhanced content
                 const translation = data.translations[currentStyle];
                 analysisText.innerHTML = translation.content;
-                analysisText.classList.remove('original-text');
+                analysisText.classList.remove('original-text', 'literal-translation');
             }
         }
 
-        // Content toggle handlers
-        document.getElementById('btn-translated').addEventListener('click', () => {
-            if (showingOriginal) {
+        // Style dropdown in modal handler
+        document.getElementById('style-dropdown-select').addEventListener('change', (e) => {
+            const selectedStyle = e.target.value;
+            
+            if (selectedStyle === 'deepl') {
+                // User selected "Original Translated (DeepL)" from dropdown
+                // This is the same as clicking "Original Translated" button
+                showingOriginal = true;
+                document.getElementById('btn-original').classList.add('active');
+            } else {
+                // User selected an AI-enhanced style
                 showingOriginal = false;
-                document.getElementById('btn-translated').classList.add('active');
                 document.getElementById('btn-original').classList.remove('active');
-                updateAnalysisContent(analysisData[currentDetailId]);
+                setStyle(selectedStyle);
             }
+            
+            updateAnalysisContent(analysisData[currentDetailId]);
         });
 
+        // Original Translated button handler
         document.getElementById('btn-original').addEventListener('click', () => {
             if (!showingOriginal) {
                 showingOriginal = true;
                 document.getElementById('btn-original').classList.add('active');
-                document.getElementById('btn-translated').classList.remove('active');
+                // Update dropdown to show DeepL option
+                document.getElementById('style-dropdown-select').value = 'deepl';
                 updateAnalysisContent(analysisData[currentDetailId]);
             }
         });
@@ -1509,8 +1476,10 @@
             });
         });
 
-        // Initialize with professional style
-        setStyle('professional');
+
+        // Initialize with sharp style (data-focused, technical)
+        const savedStyle = localStorage.getItem('preferredTranslationStyle') || 'sharp';
+        setStyle(savedStyle);
     </script>
 </body>
 </html>
